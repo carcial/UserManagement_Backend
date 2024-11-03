@@ -1,4 +1,4 @@
-package com.example.examplewithreactjs.user.Role;
+package com.example.examplewithreactjs.user.role;
 
 
 import lombok.Getter;

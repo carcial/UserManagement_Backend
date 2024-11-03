@@ -1,7 +1,8 @@
 package com.example.examplewithreactjs.user;
 
-import com.example.examplewithreactjs.user.Role.Role;
 
+
+import com.example.examplewithreactjs.user.role.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,18 +17,17 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = true)
+
     private String name;
-    @Column(nullable = true)
+
     private String surName;
-    @Column(nullable = true)
+
     private String email;
-    @Column(nullable = true)
+
     private String pass;
     @Lob
     @Column(length = 490000000)

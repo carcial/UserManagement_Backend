@@ -1,7 +1,8 @@
 package com.example.examplewithreactjs.user;
 
-import com.example.examplewithreactjs.user.Role.Role;
-import com.example.examplewithreactjs.user.Role.RoleRepository;
+import com.example.examplewithreactjs.user.role.Role;
+import com.example.examplewithreactjs.user.role.RoleRepository;
+
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,16 +10,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 

@@ -1,6 +1,6 @@
 package com.example.examplewithreactjs.user.security;
 
-import com.example.examplewithreactjs.user.Role.Role;
+import com.example.examplewithreactjs.user.role.Role;
 import com.example.examplewithreactjs.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
