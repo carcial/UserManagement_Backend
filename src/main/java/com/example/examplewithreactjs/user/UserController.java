@@ -20,6 +20,8 @@ public class UserController {
 
     private UserService userService;
 
+
+
     @PostMapping(path = "/register")
     public String addUser(@RequestBody User user){
         if(user.getEmail().isEmpty()|| user.getName().isEmpty()||user.getSurName().isEmpty() ){

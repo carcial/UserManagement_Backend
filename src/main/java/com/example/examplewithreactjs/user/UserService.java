@@ -5,6 +5,7 @@ import com.example.examplewithreactjs.user.role.RoleRepository;
 
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -96,21 +98,12 @@ public class UserService {
     }
 
     public UserLogin userLogin(UserLogin user){
-        Authentication authentication;
+        User storedUser = userRepository.findByEmail(user.getEmail());
 
-        try {
-           authentication = authenticationManager
-                            .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPass()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            user.setMessage("success");
-            User user1 = userRepository.findByEmail(user.getEmail());
-            user.setId(user1.getId());
-            user.setName(user1.getName());
-        }catch (Exception e){
-            user.setMessage("failure");
-            throw new BadCredentialsException("invalid credential");
+        if(storedUser != null && bCryptPass.matches(user.getPass(), storedUser.getPass())){
+            return user;
         }
-        return user;
+        throw new BadCredentialsException("Invalid email or password");
     }
 
     @Transactional

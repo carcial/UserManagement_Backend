@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.sql.DataSource;
 
 @Configuration
+@EnableWebSecurity
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -36,7 +37,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "api/v1/user/login"
-                        ,"api/v1/user/register")
+                        ,"api/v1/user/register","api/v1/user/**")
                 .permitAll()
                  .antMatchers(
                             "api/v1/user/saveChanges/{id}"
