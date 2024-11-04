@@ -101,6 +101,9 @@ public class UserService {
         User storedUser = userRepository.findByEmail(user.getEmail());
 
         if(storedUser != null && bCryptPass.matches(user.getPass(), storedUser.getPass())){
+            user.setId(storedUser.getId());
+            user.setName(storedUser.getName());
+            user.setMessage("success");
             return user;
         }
         throw new BadCredentialsException("Invalid email or password");
